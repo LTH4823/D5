@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        RestaurantUI ui = new RestaurantUI();
+        RestaurantService service = new RestaurantService();
+        RestaurantUI ui = new RestaurantUI(service);
         ui.result();
     }
 }
