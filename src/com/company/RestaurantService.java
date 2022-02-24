@@ -1,45 +1,37 @@
 package com.company;
-
 public class RestaurantService {
     Item maxItem;
-    Item[] itemList;
-    Item[] itemCheck;
-
-    public Item[] itemSearch(Item[] items,int money) {
-
+    public Item itemSearch(int money) {
         int count =0, arrNum =0;
-        itemList = new Item[items.length];
-
-        for (int i = 0; i < items.length; i++) {
-            if (money >= items[i].price) {
-                itemList[i] = items[i];
-                if (items[i] != null) {
+        Item item01 = new Item("짜장면",6000);
+        Item item02 = new Item("간짜장",7500);
+        Item item03 = new Item("해물짬뽕",7000);
+        Item item04 = new Item("만두",5000);
+        Item item05 = new Item("볶음밥",7500);
+        Item[] itemMenus = new RestaurantMenu().menuSetting(item01,item02,item03,item04,item05);
+        Item[] itemNullCheck = new Item[itemMenus.length];
+        for (int i = 0; i < itemMenus.length; i++) {
+            if (money >= itemMenus[i].price) {
+                itemNullCheck[i] = itemMenus[i];
+                if (itemMenus[i] != null) {
                     count++;
                     arrNum++;
                 }
             }
         }
-
-        itemCheck = new Item[count];
-        for (Item temp : itemList) {
+        Item[] itemChoice = new Item[count];
+        for (Item temp : itemNullCheck) {
             if (temp != null) {
-                itemCheck[arrNum - 1] = temp;
+                itemChoice[arrNum - 1] = temp;
                 arrNum--;
             }
         }
-
-
-        return itemCheck;
-    }
-
-        public Item itemSelect(){
         maxItem = new Item("",0);
-        for (Item temp : itemCheck) {
-                if (maxItem.price < temp.price) {
-                    maxItem = temp;
-                }
+        for (Item temp : itemChoice) {
+            if (maxItem.price < temp.price) {
+                maxItem = temp;
             }
-        return maxItem;
         }
-
+        return maxItem;
+    }
 }
