@@ -19,15 +19,15 @@ public class RestaurantService {
                 }
             }
         }
-        Item[] itemChoice = new Item[count];
+        itemMenus = new Item[count];
         for (Item temp : itemNullCheck) {
             if (temp != null) {
-                itemChoice[arrNum - 1] = temp;
+                itemMenus[arrNum - 1] = temp;
                 arrNum--;
             }
         }
         maxItem = new Item("",0);
-        for (Item temp : itemChoice) {
+        for (Item temp : itemMenus) {
             if (maxItem.price < temp.price) {
                 maxItem = temp;
             }
